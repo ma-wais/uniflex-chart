@@ -15,6 +15,7 @@ const UnifexChart = () => {
   ]);
 
   const [constants, setConstants] = useState({
+    a47: 0.1,
     nonwoven: 510,
     laborElec: 4.2,
     plate28x40: 8600,
@@ -29,12 +30,19 @@ const UnifexChart = () => {
   const [quantities, setQuantities] = useState([
     250, 500, 1000, 2000, 3000, 5000, 10000,
   ]);
-  const [a47, setA47] = useState(0.1);
   const [k47, setK47] = useState(0);
+  const [ai4Values, setAi4Values] = useState(
+    sizeInches.map((_, index) =>
+      index === 4 || index === 5 || index === 6 || index === 8 ? 0.5 : 1
+    )
+  );
 
-  const ups = 1;
+  const handleAi4Change = (index, value) => {
+    const newAi4Values = [...ai4Values];
+    newAi4Values[index] = parseFloat(value);
+    setAi4Values(newAi4Values);
+  };
 
-  // Update individual constants via input fields
   const handleConstantChange = (key, value) => {
     setConstants({
       ...constants,
@@ -55,30 +63,26 @@ const UnifexChart = () => {
     const footx = x / 12;
     const footy = y / 12;
 
-    let P4, AG4, AI4;
+    let P4;
 
-    // Calculate P4 based on index
     if (index === 0) {
-      P4 = a47 - 0.02;
+      P4 = constants.a47 - 0.02;
     } else if (index === 1 || index === 2) {
-      P4 = a47;
+      P4 = constants.a47;
     } else if (index >= 3 && index <= 6) {
-      P4 = a47 + 0.05;
+      P4 = constants.a47 + 0.05;
     } else if (index === 7) {
-      P4 = a47 + 0.25;
+      P4 = constants.a47 + 0.25;
     } else if (index === 8) {
-      P4 = a47 + 0.3;
+      P4 = constants.a47 + 0.3;
     }
 
-    // Calculate AG4 (L/E) and AI4 (ups) based on index
-    if (index === 4 || index === 5 || index === 6 || index === 8) {
-      AG4 = constants.laborElec * 2;
-      AI4 = 0.5;
-    } else {
-      AG4 = constants.laborElec;
-      AI4 = 1;
-    }
+    const AG4 =
+      index === 4 || index === 5 || index === 6 || index === 8
+        ? constants.laborElec * 2
+        : constants.laborElec;
 
+    const AI4 = ai4Values[index];
     const AF4 = constants.stitching;
     const AE4 = constants.ink * 0.0000032 * x * y;
     const AH4 = AG4 + AF4 + AE4;
@@ -162,7 +166,7 @@ const UnifexChart = () => {
         ))}
       </div>
 
-      <table className="w-[300%] border-collapse border mt-4 border-gray-300">
+      <table className="w-[150%] border-collapse border mt-4 border-gray-300">
         <thead>
           <tr className="bg-gray-100">
             <th className="border border-gray-300 p-2">Size Foot</th>
@@ -263,7 +267,13 @@ const UnifexChart = () => {
                 {row.AH4.toFixed(2)}
               </td>
               <td className="border border-gray-300 p-2">
-                {row.AI4.toFixed(2)}
+                <input
+                  type="number"
+                  value={ai4Values[index]}
+                  step={0.1}
+                  onChange={(e) => handleAi4Change(index, e.target.value)}
+                  className="w-[40px] outline-none"
+                />
               </td>
             </tr>
           ))}
@@ -293,12 +303,14 @@ const UnifexChart = () => {
       </div>
       <div className="mb-8">
         <h2 className="text-xl font-bold">Edit Constants</h2>
+        <p className="mb-1">Percentage Value: <b>{constants.a47 * 100}</b></p>
         {Object.entries(constants).map(([key, value]) => (
           <div key={key} className="mb-4">
-            <label className="mr-2">{key.toUpperCase()}: </label>
+            <label className="mr-2">{key != "a47" ? key.toUpperCase() : ""} </label>
             <input
               type="number"
-              value={value}
+              step={key === "a47" ? 0.01 : 1}
+              value={value.toFixed(1)}
               onChange={(e) => handleConstantChange(key, e.target.value)}
               className="border p-1"
             />
