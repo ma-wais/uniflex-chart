@@ -63,7 +63,7 @@ const UnifexChart = () => {
     const footx = x / 12;
     const footy = y / 12;
 
-    let P4;
+    let P4, AB4;
 
     if (index === 0) {
       P4 = constants.a47 - 0.02;
@@ -88,7 +88,15 @@ const UnifexChart = () => {
     const AH4 = AG4 + AF4 + AE4;
     const AD4 = 6000 / AI4;
     const AC4 = 3500 / AI4;
-    const AB4 = constants.plate28x40 / AI4;
+    
+    if( index === 0 || index === 1 ){
+       AB4 = constants.plate28x40 / AI4;
+    } else if( index === 2 || index === 3 || index === 4 || index === 5 || index === 6){
+       AB4 = constants.plate40x56 / AI4;
+    } else {
+       AB4 = constants.plate43x63 / AI4;
+    }
+
     const m48 = constants.nonwoven + 5;
     const Q4 =
       (gsm / 1000 / 1550) * m48 + ((gsm / 1000 / 1550) * m48 * 3) / 100;
