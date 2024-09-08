@@ -204,18 +204,18 @@ const UnifexChart = () => {
       </div>
       <div className="mb-8">
         <h2 className="text-xl font-bold">Edit Constants</h2>
-        <p className="mb-1">
+        <p className="my-6">
           Percentage Value: <b>{constants.a47 * 100}</b>
         </p>
         {Object.entries(constants).map(([key, value]) => (
-          <div key={key} className="mb-4">
+          <div key={key} className="mx-4 inline-block">
             <label className="mr-2">
               {key != "a47" ? key.toUpperCase() : ""}{" "}
             </label>
             <input
               type="number"
               step={key === "a47" ? 0.01 : 1}
-              value={value.toFixed(1)}
+              value={value.toFixed(2)}
               onChange={(e) => handleConstantChange(key, e.target.value)}
               className="border p-1 w-20"
             />
