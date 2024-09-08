@@ -166,7 +166,7 @@ const UnifexChart = () => {
         ))}
       </div>
 
-      <table className="w-[150%] border-collapse border mt-4 border-gray-300">
+      <table className="w-[180%] border-collapse border mt-4 border-gray-300">
         <thead>
           <tr className="bg-gray-100">
             <th className="border border-gray-300 p-2">Size Foot</th>
