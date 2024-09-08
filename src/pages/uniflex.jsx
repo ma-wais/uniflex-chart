@@ -88,13 +88,19 @@ const UnifexChart = () => {
     const AH4 = AG4 + AF4 + AE4;
     const AD4 = 6000 / AI4;
     const AC4 = 3500 / AI4;
-    
-    if( index === 0 || index === 1 ){
-       AB4 = constants.plate28x40 / AI4;
-    } else if( index === 2 || index === 3 || index === 4 || index === 5 || index === 6){
-       AB4 = constants.plate40x56 / AI4;
+
+    if (index === 0 || index === 1) {
+      AB4 = constants.plate28x40 / AI4;
+    } else if (
+      index === 2 ||
+      index === 3 ||
+      index === 4 ||
+      index === 5 ||
+      index === 6
+    ) {
+      AB4 = constants.plate40x56 / AI4;
     } else {
-       AB4 = constants.plate43x63 / AI4;
+      AB4 = constants.plate43x63 / AI4;
     }
 
     const m48 = constants.nonwoven + 5;
@@ -108,7 +114,7 @@ const UnifexChart = () => {
     const V4 = S4 * 1000 + AB4;
 
     const H4 = T4 / 250;
-    const I4 = U4 / 500-5;
+    const I4 = U4 / 500 - 5;
     const J4 = V4 / 1000;
 
     // log all these values
@@ -133,7 +139,6 @@ const UnifexChart = () => {
       I4,
       J4,
     });
-    
 
     const calculateForQuantity = (quantity) => {
       const T4 = S4 * quantity + AB4 + AD4;
@@ -197,10 +202,32 @@ const UnifexChart = () => {
           </button>
         ))}
       </div>
-
+      <div className="mb-8">
+        <h2 className="text-xl font-bold">Edit Constants</h2>
+        <p className="mb-1">
+          Percentage Value: <b>{constants.a47 * 100}</b>
+        </p>
+        {Object.entries(constants).map(([key, value]) => (
+          <div key={key} className="mb-4">
+            <label className="mr-2">
+              {key != "a47" ? key.toUpperCase() : ""}{" "}
+            </label>
+            <input
+              type="number"
+              step={key === "a47" ? 0.01 : 1}
+              value={value.toFixed(1)}
+              onChange={(e) => handleConstantChange(key, e.target.value)}
+              className="border p-1 w-20"
+            />
+          </div>
+        ))}
+      </div>
       <div className="flex !w-[155%]">
         <div className="mt-8 ">
-          <p className="text-xs font-bold">Edit Sizes <br />(inches)</p>
+          <p className="text-xs font-bold">
+            Edit Sizes <br />
+            (inches)
+          </p>
           {sizeInches.map((size, index) => (
             <div key={index} className="my-20 w-[120px]">
               {/* <span>Size {index + 1}: </span> */}
@@ -210,7 +237,7 @@ const UnifexChart = () => {
                 onChange={(e) => handleSizeChange(index, "x", e.target.value)}
                 className="border w-[50px]"
               />
-               x
+              x
               <input
                 type="number"
                 value={size.y}
@@ -333,26 +360,6 @@ const UnifexChart = () => {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="mb-8">
-        <h2 className="text-xl font-bold">Edit Constants</h2>
-        <p className="mb-1">
-          Percentage Value: <b>{constants.a47 * 100}</b>
-        </p>
-        {Object.entries(constants).map(([key, value]) => (
-          <div key={key} className="mb-4">
-            <label className="mr-2">
-              {key != "a47" ? key.toUpperCase() : ""}{" "}
-            </label>
-            <input
-              type="number"
-              step={key === "a47" ? 0.01 : 1}
-              value={value.toFixed(1)}
-              onChange={(e) => handleConstantChange(key, e.target.value)}
-              className="border p-1"
-            />
-          </div>
-        ))}
       </div>
     </div>
   );
