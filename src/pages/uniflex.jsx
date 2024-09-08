@@ -100,8 +100,32 @@ const UnifexChart = () => {
     const V4 = S4 * 1000 + AB4;
 
     const H4 = T4 / 250;
-    const I4 = U4 / 500 - 5;
+    const I4 = U4 / 500-5;
     const J4 = V4 / 1000;
+
+    // log all these values
+    console.log({
+      P4,
+      T4,
+      U4,
+      S4,
+      Q4,
+      R4,
+      P4,
+      AA4,
+      AB4,
+      AC4,
+      AD4,
+      AE4,
+      AF4,
+      AG4,
+      AH4,
+      AI4,
+      H4,
+      I4,
+      J4,
+    });
+    
 
     const calculateForQuantity = (quantity) => {
       const T4 = S4 * quantity + AB4 + AD4;
@@ -166,147 +190,152 @@ const UnifexChart = () => {
         ))}
       </div>
 
-      <table className="w-[180%] border-collapse border mt-4 border-gray-300">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border border-gray-300 p-2">Size Foot</th>
-            <th className="border border-gray-300 p-2">Size Inches</th>
-            <th className="border border-gray-300">Stitching</th>
-            {quantities.map((q) => (
-              <th key={q} className="border border-gray-300 p-2">
-                {q}
-              </th>
-            ))}
-            <th className="p-2 bg-white"></th>
-
-            <th className="border border-gray-300 p-2">P%</th>
-            <th className="border border-gray-300 p-2"></th>
-            <th className="border border-gray-300 p-2"></th>
-
-            <th className="border border-gray-300 p-2">Total Cost</th>
-            {quantities.map((q) => (
-              <th key={`process-${q}`} className="border border-gray-300 p-2">
-                {q}
-              </th>
-            ))}
-            <th className="border border-gray-300 p-2">Pro</th>
-            <th className="border border-gray-300 p-2">Process</th>
-            <th className="border border-gray-300 p-2" colSpan={2}>
-              Over Heads
-            </th>
-            <th className="border border-gray-300 p-2">Ink</th>
-            <th className="border border-gray-300 p-2">Stitch</th>
-            <th className="border border-gray-300 p-2">L/E</th>
-            <th className="border border-gray-300 p-2">O Heads</th>
-            <th className="border border-gray-300 p-2">ups</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr key={index}>
-              <td className="border border-gray-300 p-2">{`${row.sizeFoot.x.toFixed(
-                2
-              )} x ${row.sizeFoot.y.toFixed(2)}`}</td>
-              <td className="border border-gray-300 p-2">{`${row.sizeInches.x} x ${row.sizeInches.y}`}</td>
-              <td className="border border-gray-300 p-2">{row.stitching}</td>
-              {row.values.map((value, i) => (
-                <td key={i} className="border border-gray-300 p-2">
-                  {i === 1
-                    ? row.I4.toFixed(2)
-                    : i === 2
-                    ? row.J4.toFixed(2)
-                    : value.toFixed(2)}
-                </td>
-              ))}
-              <td className="p-4"></td>
-
-              <td className="border border-gray-300 p-2">
-                {row.pPercent.toFixed(2)}%
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.Q4.toFixed(3)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.R4.toFixed(2)}
-              </td>
-
-              <td className="border border-gray-300 p-2">
-                {row.totalCost.toFixed(2)}
-              </td>
-              {row.processValues.map((value, i) => (
-                <td key={i} className="border border-gray-300 p-2">
-                  {i === 0
-                    ? row.T4.toFixed(2)
-                    : i === 1
-                    ? row.U4.toFixed(2)
-                    : (value - 6000).toFixed(2)}
-                </td>
-              ))}
-              <td className="border border-gray-300 p-2">
-                {row.AA4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.AB4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.AC4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.AD4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.AE4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.AF4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.AG4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                {row.AH4.toFixed(2)}
-              </td>
-              <td className="border border-gray-300 p-2">
-                <input
-                  type="number"
-                  value={ai4Values[index]}
-                  step={0.1}
-                  onChange={(e) => handleAi4Change(index, e.target.value)}
-                  className="w-[40px] outline-none"
-                />
-              </td>
-            </tr>
+      <div className="flex !w-[155%]">
+        <div className="mt-8 ">
+          <p className="text-xs font-bold">Edit Sizes <br />(inches)</p>
+          {sizeInches.map((size, index) => (
+            <div key={index} className="my-20 w-[120px]">
+              {/* <span>Size {index + 1}: </span> */}
+              <input
+                type="number"
+                value={size.x}
+                onChange={(e) => handleSizeChange(index, "x", e.target.value)}
+                className="border w-[50px]"
+              />
+               x
+              <input
+                type="number"
+                value={size.y}
+                onChange={(e) => handleSizeChange(index, "y", e.target.value)}
+                className="border ml-1 w-[50px]"
+              />
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+        <table className="border-collapse border mt-4 border-gray-300">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-300 p-2">Size Foot</th>
+              <th className="border border-gray-300 p-2">Size Inches</th>
+              <th className="border border-gray-300">Stitching</th>
+              {quantities.map((q) => (
+                <th key={q} className="border border-gray-300 p-2">
+                  {q}
+                </th>
+              ))}
+              <th className="p-2 bg-white"></th>
 
-      <div className="mt-8">
-        <h2 className="text-xl font-bold">Edit Sizes (inches)</h2>
-        {sizeInches.map((size, index) => (
-          <div key={index} className="mb-4">
-            <span>Size {index + 1}: </span>
-            <input
-              type="number"
-              value={size.x}
-              onChange={(e) => handleSizeChange(index, "x", e.target.value)}
-              className="border p-1 mx-2"
-            />
-            x
-            <input
-              type="number"
-              value={size.y}
-              onChange={(e) => handleSizeChange(index, "y", e.target.value)}
-              className="border p-1 mx-2"
-            />
-          </div>
-        ))}
+              <th className="border border-gray-300 p-2">P%</th>
+              <th className="border border-gray-300 p-2"></th>
+              <th className="border border-gray-300 p-2"></th>
+
+              <th className="border border-gray-300 p-2">Total Cost</th>
+              {quantities.map((q) => (
+                <th key={`process-${q}`} className="border border-gray-300 p-2">
+                  {q}
+                </th>
+              ))}
+              <th className="border border-gray-300 p-2">Pro</th>
+              <th className="border border-gray-300 p-2">Process</th>
+              <th className="border border-gray-300 p-2" colSpan={2}>
+                Over Heads
+              </th>
+              <th className="border border-gray-300 p-2">Ink</th>
+              <th className="border border-gray-300 p-2">Stitch</th>
+              <th className="border border-gray-300 p-2">L/E</th>
+              <th className="border border-gray-300 p-2">O Heads</th>
+              <th className="border border-gray-300 p-2">ups</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <tr key={index}>
+                <td className="border border-gray-300 p-2">{`${row.sizeFoot.x.toFixed(
+                  2
+                )} x ${row.sizeFoot.y.toFixed(2)}`}</td>
+                <td className="border border-gray-300 p-2">{`${row.sizeInches.x} x ${row.sizeInches.y}`}</td>
+                <td className="border border-gray-300 p-2">{row.stitching}</td>
+                {row.values.map((value, i) => (
+                  <td key={i} className="border border-gray-300 p-2">
+                    {i === 1
+                      ? row.I4.toFixed(2)
+                      : i === 2
+                      ? row.J4.toFixed(2)
+                      : (value - 1).toFixed(2)}
+                  </td>
+                ))}
+                <td className="p-4"></td>
+
+                <td className="border border-gray-300 p-2">
+                  {row.pPercent.toFixed(2)}%
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.Q4.toFixed(3)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.R4.toFixed(2)}
+                </td>
+
+                <td className="border border-gray-300 p-2">
+                  {row.totalCost.toFixed(2)}
+                </td>
+                {row.processValues.map((value, i) => (
+                  <td key={i} className="border border-gray-300 p-2">
+                    {i === 0
+                      ? row.T4.toFixed(2)
+                      : i === 1
+                      ? row.U4.toFixed(2)
+                      : (value - 6000).toFixed(2)}
+                  </td>
+                ))}
+                <td className="border border-gray-300 p-2">
+                  {row.AA4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.AB4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.AC4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.AD4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.AE4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.AF4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.AG4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  {row.AH4.toFixed(2)}
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <input
+                    type="number"
+                    value={ai4Values[index]}
+                    step={0.1}
+                    onChange={(e) => handleAi4Change(index, e.target.value)}
+                    className="w-[40px] outline-none"
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <div className="mb-8">
         <h2 className="text-xl font-bold">Edit Constants</h2>
-        <p className="mb-1">Percentage Value: <b>{constants.a47 * 100}</b></p>
+        <p className="mb-1">
+          Percentage Value: <b>{constants.a47 * 100}</b>
+        </p>
         {Object.entries(constants).map(([key, value]) => (
           <div key={key} className="mb-4">
-            <label className="mr-2">{key != "a47" ? key.toUpperCase() : ""} </label>
+            <label className="mr-2">
+              {key != "a47" ? key.toUpperCase() : ""}{" "}
+            </label>
             <input
               type="number"
               step={key === "a47" ? 0.01 : 1}
