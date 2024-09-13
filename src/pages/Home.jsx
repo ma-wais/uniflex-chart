@@ -15,7 +15,7 @@ const Home = () => {
             <a href='https://mawais20212021.neocities.org/chart/excelsheet'>BOPP Bags</a>
         </button>
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm'>
-            <a href='https://nonwowen-chart.vercel.app/'>NonWoven Sheet Print</a>
+            <a href='https://nonwoven-chart.vercel.app/'>NonWoven Sheet Print</a>
         </button>
     </div>
   )
