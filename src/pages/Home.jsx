@@ -17,6 +17,12 @@ const Home = () => {
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm'>
             <a href='https://nonwoven-chart.vercel.app/'>NonWoven Sheet Print</a>
         </button>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm'>
+            <a href='https://nonwoven-bags.vercel.app/'>NonWoven Bags</a>
+        </button>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm'>
+            <a href='https://mawais20212021.neocities.org/chart/bagcosting'>NonWoven bag Costing</a>
+        </button>
     </div>
   )
 }
