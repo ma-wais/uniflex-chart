@@ -117,29 +117,6 @@ const UnifexChart = () => {
     const I4 = U4 / 500 - 5;
     const J4 = V4 / 1000;
 
-    // log all these values
-    console.log({
-      P4,
-      T4,
-      U4,
-      S4,
-      Q4,
-      R4,
-      P4,
-      AA4,
-      AB4,
-      AC4,
-      AD4,
-      AE4,
-      AF4,
-      AG4,
-      AH4,
-      AI4,
-      H4,
-      I4,
-      J4,
-    });
-
     const calculateForQuantity = (quantity) => {
       const T4 = S4 * quantity + AB4 + AD4;
       return {
