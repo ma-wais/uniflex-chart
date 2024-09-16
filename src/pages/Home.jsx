@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
 
   return (
-    <div className='flex flex-col lg:flex-row gap-4 justify-center flex-wrap w-full items-center h-[120vh]'>
+    <div className='flex flex-col lg:flex-row gap-4 justify-center flex-wrap w-full h-[120vh]'>
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-8 px-4 rounded-sm'>
             <a href='https://pp-costing.vercel.app/'>PP Costing</a>
         </button>
