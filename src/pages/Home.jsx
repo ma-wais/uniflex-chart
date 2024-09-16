@@ -15,13 +15,13 @@ const Home = () => {
             <a href='https://mawais20212021.neocities.org/chart/excelsheet'>BOPP Bags</a>
         </button>
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-8 px-4 rounded-sm'>
-            <a href='https://nonwoven-chart.vercel.app/'>NonWoven Sheet Print</a>
+            <a href='https://nonwoven-chart.vercel.app/'>Non Woven Sheet Print</a>
         </button>
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-8 px-4 rounded-sm'>
-            <a href='https://nonwoven-bags.vercel.app/'>NonWoven Bags</a>
+            <a href='https://nonwoven-bags.vercel.app/'>Non Woven Bags</a>
         </button>
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold text-lg py-8 px-4 rounded-sm'>
-            <a href='https://mawais20212021.neocities.org/chart/bagcosting'>NonWoven Bag Costing</a>
+            <a href='https://mawais20212021.neocities.org/chart/bagcosting'>Non Woven Bag Costing</a>
         </button>
     </div>
   )
